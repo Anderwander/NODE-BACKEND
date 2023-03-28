@@ -24,15 +24,15 @@ const getById = (req, res) => {
 
 const create = (req, res) => {
   let name = req.body.name;
-  let date_time = req.body.date_time;
+  let datetime = req.body.datetime;
   let idstadium = req.body.idstadium;
   let idtournament = req.body.idtournament;
   let sql =
-    "INSERT INTO game (name,date_time, idstadium,idtournament)\
+    "INSERT INTO game (name,datetime, idstadium,idtournament)\
   VALUES (?,?,?,?)";
   connection.query(
     sql,
-    [name, date_time, idstadium, idtournament],
+    [name, datetime, idstadium, idtournament],
     (err, result) => {
       if (err) throw err;
       res.send(result);
@@ -42,24 +42,24 @@ const create = (req, res) => {
 
 const update = (req, res) => {
   let name = req.body.name;
-  let idteam = req.params.id;
+  let idgame = req.params.id;
   let idstadium = req.body.idstadium;
   let sql =
-    "UPDATE team\
+    "UPDATE game\
     SET name=?,idstadium=? \
-  WHERE idteam=?";
-  connection.query(sql, [name, idstadium, idteam], (err, result) => {
+  WHERE idgame=?";
+  connection.query(sql, [name, idstadium, idgame], (err, result) => {
     if (err) throw err;
     res.send(result);
   });
 };
 
 const deletes = (req, res) => {
-  let idplayer = req.params.id;
+  let idgame = req.params.id;
   let sql =
-    "DELETE FROM team\
-    WHERE idteam=?";
-  connection.query(sql, [idplayer], (err, result) => {
+    "DELETE FROM game\
+    WHERE idgame=?";
+  connection.query(sql, [idgame], (err, result) => {
     if (err) throw err;
     res.send(result);
   });

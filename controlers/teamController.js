@@ -50,11 +50,11 @@ const update = (req, res) => {
 };
 
 const deletes = (req, res) => {
-  let idplayer = req.params.id;
+  let idteam = req.params.id;
   let sql =
     "DELETE FROM team\
     WHERE idteam=?";
-  connection.query(sql, [idplayer], (err, result) => {
+  connection.query(sql, [idteam], (err, result) => {
     if (err) throw err;
     res.send(result);
   });

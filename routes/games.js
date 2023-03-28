@@ -21,11 +21,13 @@ router.post("/", isAuthorized, (req, res) => {
 });
 
 router.put("/:id", isAuthorized, (req, res) => {
-  res.send("Edita un equipo con id " + req.params.id);
+  gameController.update(req, res);
+  /* res.send("Edita un equipo con id " + req.params.id); */
 });
 
 router.delete("/:id", isAuthorized, (req, res) => {
-  res.send("Elimina un equipo con id " + req.params.id);
+  gameController.deletes(req, res);
+  /* res.send("Elimina un equipo con id " + req.params.id); */
 });
 
 /*
