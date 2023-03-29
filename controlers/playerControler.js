@@ -1,4 +1,3 @@
-import connection from "../config/db.js";
 import Player from "../models/players.js";
 import Team from "../models/teams.js";
 
@@ -125,17 +124,6 @@ const deletes = async (req, res) => {
       message: error.message || "Some error ocurred while retrieving players.",
     });
   }
-};
-
-const deletes_old = (req, res) => {
-  let idplayer = req.params.id;
-  let sql =
-    "DELETE FROM player\
-    WHERE idplayer=?";
-  connection.query(sql, [idplayer], (err, result) => {
-    if (err) throw err;
-    res.send(result);
-  });
 };
 
 export default {

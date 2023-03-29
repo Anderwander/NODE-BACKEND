@@ -1,26 +1,32 @@
 import { Router } from "express";
+import stadiumController from "../controlers/stadiumController.js";
 import isAuthorized from "../middlewares/auth.js";
 
 const router = Router();
 
 router.get("/", (req, res) => {
-  res.send("Mostrar todos los estadios");
+  stadiumController.getAll(req, res);
+  /*  res.send("Mostrar todos los estadios"); */
 });
 
 router.get("/:id", (req, res) => {
-  res.send("Mostrar un estadio con id " + req.params.id);
+  stadiumController.getById(req, res);
+  /* res.send("Mostrar un estadio con id " + req.params.id); */
 });
 
 router.post("/", isAuthorized, (req, res) => {
-  res.send("Crea un estadio ");
+  stadiumController.create(req, res);
+  /* res.send("Crea un estadio "); */
 });
 
 router.put("/:id", isAuthorized, (req, res) => {
-  res.send("Edita un estadio con id " + req.params.id);
+  stadiumController.update(req, res);
+  /* res.send("Edita un estadio con id " + req.params.id); */
 });
 
 router.delete("/:id", isAuthorized, (req, res) => {
-  res.send("Elimina un estadio con id " + req.params.id);
+  stadiumController.deletes(req, res);
+  /* res.send("Elimina un estadio con id " + req.params.id); */
 });
 
 /*

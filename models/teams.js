@@ -55,22 +55,27 @@ Stadium.hasMany(Team, {
 Team.belongsToMany(Game, {
   through: "team_has_game",
   foreignKey: "idteam",
+  timestamps: false,
+
   otherKey: "idgame",
 });
 Game.belongsToMany(Team, {
   through: "team_has_game",
   foreignKey: "idgame",
+  timestamps: false,
   otherKey: "idteam",
 });
 
 Team.belongsToMany(Tournament, {
   through: "tournament_has_team",
   foreignKey: "idteam",
+  timestamps: false,
   otherKey: "idtournament",
 });
 Tournament.belongsToMany(Team, {
   through: "tournament_has_team",
   foreignKey: "idtournament",
+  timestamps: false,
   otherKey: "idteam",
 });
 export default Team;

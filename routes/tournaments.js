@@ -1,26 +1,32 @@
 import { Router } from "express";
+import tournamentController from "../controlers/tournamentController.js";
 import isAuthorized from "../middlewares/auth.js";
 
 const router = Router();
 
 router.get("/", (req, res) => {
-  res.send("Mostrar todos los torneos");
+  tournamentController.getAll(req, res);
+  /*  res.send("Mostrar todos los torneos"); */
 });
 
 router.get("/:id", (req, res) => {
-  res.send("Mostrar un torneo con id " + req.params.id);
+  tournamentController.getById(req, res);
+  /* res.send("Mostrar un torneo con id " + req.params.id); */
 });
 
 router.post("/", isAuthorized, (req, res) => {
-  res.send("Crea un torneo ");
+  tournamentController.create(req, res);
+  /* res.send("Crea un torneo "); */
 });
 
 router.put("/:id", isAuthorized, (req, res) => {
-  res.send("Edita un torneo con id " + req.params.id);
+  tournamentController.update(req, res);
+  /* res.send("Edita un torneo con id " + req.params.id); */
 });
 
 router.delete("/:id", isAuthorized, (req, res) => {
-  res.send("Elimina un torneo con id " + req.params.id);
+  tournamentController.deletes(req, res);
+  /* res.send("Elimina un torneo con id " + req.params.id); */
 });
 
 /*
