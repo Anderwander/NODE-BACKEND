@@ -12,4 +12,16 @@ router.post("/", (req, res) => {
   userController.create(req, res);
 });
 
+router.post("/login", (req, res) => {
+  userController.login(req, res);
+});
+
+router.post("/login", (req, res) => {
+  userController.login(req, res);
+});
+
+router.get("/login", (req, res) => {
+  userController.loginForm(req, res);
+});
+
 export default router;
