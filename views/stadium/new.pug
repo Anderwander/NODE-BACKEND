@@ -1,0 +1,21 @@
+extends ../layout 
+
+block content 
+    h2 Crear un estadio
+    if error        
+        p=error 
+
+    form(action="/stadiums" method="POST") 
+        label(for="name") Nombre 
+        input(type="text" name="name" id="name") 
+        br
+        label(for="address") Dirección
+        input(type="text" name="address" id="address") 
+        br
+        label(for="capacity") Aforo
+        input(type="number" name="capacity" id="capacity") 
+        input(type="hidden", name="password", value="mi-contraseña")
+        input(type="submit", value="Crear un estadio")
+
+    a(href="/stadiums") 
+        button  Volver a la lista 

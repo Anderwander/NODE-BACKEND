@@ -1,31 +1,30 @@
 extends ../layout 
 
 block content 
-    h2 Crear un jugador
-    if error        
+    h2 Crear un equipo
+    if error     
         p=error 
-
-    form(action="/players" method="POST") 
+    
+    form(action="/teams" method="POST") 
         label(for="name") Nombre 
         input(type="text" name="name" id="name") 
         br
-        label(for="last_name") Apellido 
-        input(type="text" name="last_name" id="last_name") 
+        label(for="date") Fecha creación
+        input(type="date", name="date", id="date")
         br
-        label(for="age") Edad 
-        input(type="number" name="age" id="age")
-        br
-        label(for="idteam") Equipo 
-        if teams 
-            select(name="idteam" id="idteam")
-                option(value="0") Sin equipo 
-                each team in teams 
-                    option(value=team.idteam)=team.name 
-        else  
-            input(type="number" name="idteam" id="idteam")
+        label(for="stadium") Estadio 
+        if stadiums 
+            select(name="idstadium" id="idstadium") 
+                option(value="0") Sin estadio 
+                each stadium in stadiums
+                    option(value=stadium.idstadium)=stadium.name 
+        else 
+            input(type="number", name="idstadium" id="idstadium")
+
         br
         input(type="hidden", name="password", value="mi-contraseña")
-        input(type="submit", value="Crear jugador")
+        input(type="submit", value="Crear equipo")
 
-    a(href="/players") 
+    a(href="/teams") 
         button  Volver a la lista 
+   

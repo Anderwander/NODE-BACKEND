@@ -18,8 +18,8 @@ block content
                     td=player.age 
                     if player.team
                         td=player.team.name 
-                    else 
-                        td Sin 
+                    else  
+                        td Sin equipo
                     td 
                         form(action=`/players/player/delete/${player.idplayer}`, method="post") 
                             input(type="hidden", name="password", value="mi-contraseña")

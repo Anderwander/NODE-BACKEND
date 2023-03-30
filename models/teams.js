@@ -56,7 +56,6 @@ Team.belongsToMany(Game, {
   through: "team_has_game",
   foreignKey: "idteam",
   timestamps: false,
-
   otherKey: "idgame",
 });
 Game.belongsToMany(Team, {

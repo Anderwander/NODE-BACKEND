@@ -2,30 +2,29 @@ extends ../layout
 
 block content 
     link(rel="stylesheet", href="/style.css")
-    h1 Jugadores 
+    h1 Equipos
 
     table 
         thead 
             th Nombre 
-            th Apellido 
-            th Edad 
-            th Equipo 
+            th Fecha creación
+            th Estadio
         tbody 
-            each player in players 
+            each team in teams
                 tr 
-                    td=player.name 
-                    td=player.last_name 
-                    td=player.age 
-                    if player.team
-                        td=player.team.name 
+                    td=team.name 
+                    td=team.creation_date
+                    if team.stadium
+                        td=team.stadium.name 
                     else 
-                        td Sin 
+                        td Sin estadio 
                     td 
-                        form(action=`/players/player/delete/${player.idplayer}`, method="post") 
+                       form(action=`/teams/team/delete/${team.idteam}`, method="post") 
                             input(type="hidden", name="password", value="mi-contraseña")
                             input(type="submit", value="¡¡¡NO ME BORRES POR FAVOOOORRRRR!!!")
-    a(href="/players/new") 
-        button Crear un jugador 
+    a(href="/teams/new") 
+        button Crear un equipo  
+                        
 
                 
 

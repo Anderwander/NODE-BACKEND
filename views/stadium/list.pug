@@ -1,0 +1,28 @@
+extends ../layout 
+
+block content 
+    link(rel="stylesheet", href="/style.css")
+    h1 Estadios
+
+    table 
+        thead 
+            th Nombre
+            th Dirección
+            th Aforo
+        tbody 
+            each stadium in stadiums 
+                tr 
+                    td=stadium.name 
+                    td=stadium.address
+                    td=stadium.capacity
+                    td 
+                        form(action=`/stadiums/stadium/delete/${stadium.idstadium}`, method="post") 
+                            input(type="hidden", name="password", value="mi-contraseña")
+                            input(type="submit", value="¡¡¡NO ME BORRES POR FAVOOOORRRRR!!!")
+    a(href="/stadiums/new") 
+        button Crear un estadio
+
+                
+
+
+        

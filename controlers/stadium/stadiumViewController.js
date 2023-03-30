@@ -3,11 +3,11 @@ import stadiumController from "./stadiumController.js";
 const getAll = async (req, res) => {
   let result = await stadiumController.getAll();
   if (result[0] === 0) {
-    res.send(result[1]);
+    res.render("stadium/list", { stadiums: result[1] });
   } else {
     let error = result[1];
     res.status(500).send({
-      message: error.message || "Some error ocurred while retrieving players.",
+      message: error.message || "Some error ocurred while retrieving stadiums.",
     });
   }
 };
@@ -32,16 +32,27 @@ const getById = async (req, res) => {
   }
 };
 
+const createForm = async (req, res) => {
+  let results = await stadiumController.getAll();
+  let error = req.query.error;
+  if (results[0] === 1 || results[1] === []) {
+    res.render("stadium/new");
+  } else {
+    let stadiums = results[1];
+    res.render("stadium/new", { stadiums: stadiums, error: error });
+  }
+};
+
 const create = async (req, res) => {
   let data = {
-    name: req.body.name,
+    name: req.body.name == "" ? null : req.body.name,
     address: req.body.address,
     capacity: req.body.capacity,
   };
 
   let result = await stadiumController.create(data);
   if (result[0] === 0) {
-    res.send(result[1]);
+    res.redirect("/stadiums");
   } else {
     let error = result[1];
     res.status(500).send({
@@ -73,25 +84,13 @@ const update = async (req, res) => {
 const deletes = async (req, res) => {
   let idstadium = req.params.id;
   let result = await stadiumController.deletes(idstadium);
-  if (result === 0) {
-    if (result[1] === 0) {
-      res.status(404).send({
-        message: `Stadium with id=${id} not found`,
-      });
-    } else {
-      res.send("Stadium deleted");
-    }
-  } else {
-    let error = result[1];
-    res.status(500).send({
-      message: error.message || "Some error ocurred while deleting stadiums.",
-    });
-  }
+  res.redirect("/stadiums");
 };
 
 export default {
   getAll,
   getById,
+  createForm,
   create,
   update,
   deletes,
