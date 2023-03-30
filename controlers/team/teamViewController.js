@@ -3,7 +3,7 @@ import teamController from "./teamController.js";
 const getAll = async (req, res) => {
   let result = await teamController.getAll();
   if (result[0] === 0) {
-    res.send(result[1]);
+    res.render(result[1]);
   } else {
     let error = result[1];
     res.status(500).send({

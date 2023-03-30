@@ -47,7 +47,7 @@ const getById = async (id) => {
         },
       ],
     });
-    return [0, player];
+    return [0, team];
   } catch (error) {
     return [1, error];
   }

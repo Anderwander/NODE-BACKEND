@@ -1,10 +1,9 @@
 import teamController from "./teamController.js";
-import Stadium from "../../models/stadiums.js";
 
 const getAll = async (req, res) => {
   let result = await teamController.getAll();
   if (result[0] === 0) {
-    res.render(result[1]);
+    res.send(result[1]);
   } else {
     let error = result[1];
     res.status(500).send({
@@ -37,8 +36,8 @@ const create = async (req, res) => {
   let data = {
     name: req.body.name,
     creation_date: req.body.creation_date,
+    idcaptain: req.body.idcaptain,
     idstadium: req.body.idstadium,
-    creation_date: creation_date,
   };
   let result = await teamController.create(data);
   if (result[0] === 0) {
@@ -54,6 +53,7 @@ const create = async (req, res) => {
 const update = async (req, res) => {
   let data = {
     name: req.body.name,
+    idcaptain: req.body.idcaptain,
     idstadium: req.body.idstadium,
   };
 

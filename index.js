@@ -4,6 +4,7 @@ import routerView from "./routes/view/router.js";
 
 const app = express();
 
+app.use(express.static("css"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.set("view engine", "pug");

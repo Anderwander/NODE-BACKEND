@@ -14,6 +14,7 @@ const Player = connection.define(
     name: {
       type: Sequelize.STRING(45),
       allowNull: false,
+      required: true,
     },
     last_name: {
       type: Sequelize.STRING(45),

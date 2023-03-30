@@ -1,0 +1,10 @@
+body {
+  background-color: rgb(255, 131, 195);
+  color: rgb(103, 230, 230);
+}
+
+button {
+  border: none;
+  border-radius: 2px;
+  background-color: yellow;
+}
