@@ -19,14 +19,12 @@ const create = async (req, res) => {
       username: req.body.username.toLowerCase(),
       password: hashedPassword,
       email: req.body.email,
-      role: req.body.role,
+      role: "user",
     };
     let user = await User.create(data);
-    res.send(user);
+    res.redirect("/login");
   } catch (error) {
-    res.status(500).send({
-      message: error.message || "Some error occurred while creating user.",
-    });
+    res.redirect("/register?error=" + error.message);
   }
 };
 
@@ -46,14 +44,28 @@ const login = async (req, res) => {
   }
 };
 
-//loginForm
+const logout = (req, res) => {
+  req.logout((err) => {
+    if (err) {
+      console.log(err);
+    }
+    res.redirect("/");
+  });
+};
+
+const registerForm = async (req, res) => {
+  const error = req.query.error;
+  res.render("user/register", { error: error });
+};
 
 const loginForm = async (req, res) => {
   res.render("user/login");
 };
+
 export default {
   getAll,
   create,
   login,
   loginForm,
+  registerForm,
 };

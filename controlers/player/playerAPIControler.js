@@ -75,7 +75,7 @@ const update = async (req, res) => {
 const deletes = async (req, res) => {
   let idplayer = req.params.id;
   let result = await playerControler.deletes(idplayer);
-  if (result === 0) {
+  if (result[0] === 0) {
     if (result[1] === 0) {
       res.status(404).send({
         message: `Player with id=${id} not found`,

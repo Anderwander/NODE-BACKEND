@@ -1,16 +1,16 @@
 import { Router } from "express";
-import isAuthorized from "../../middlewares/auth.js";
+import { isAdmin, isAuthorized } from "../../middlewares/auth.js";
 import playerControler from "../../controlers/player/playerViewControler.js";
 
 const router = Router();
 
-router.get("/", (req, res) => {
+router.get("/", isAuthorized, (req, res) => {
   playerControler.getAll(req, res);
   /*   res.send("Mostrar todos los jugadores");
    */
 });
 
-router.get("/new", (req, res) => {
+router.get("/new", isAdmin, (req, res) => {
   playerControler.createForm(req, res);
   /*   res.send("Mostrar todos los jugadores");
    */

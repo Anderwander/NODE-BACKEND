@@ -1,5 +1,4 @@
 import playerControler from "./playerControler.js";
-import Team from "../../models/teams.js";
 import teamController from "../team/teamController.js";
 
 const getAll = async (req, res) => {
