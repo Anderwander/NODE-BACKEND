@@ -23,7 +23,7 @@ const getById = async (req, res) => {
         message: `Cannot find player with id=${id}.`,
       });
     } else {
-      res.send(player);
+      res.render("player/show", { player });
     }
   } else {
     let error = result[1];
@@ -63,24 +63,33 @@ const create = async (req, res) => {
   }
 };
 
+const updateForm = async (req, res) => {
+  let idplayer = req.params.id;
+  let result = await playerControler.getById(idplayer);
+  let results = await teamController.getAll();
+  const player = result[1];
+  const teams = results[1];
+
+  res.render("player/edit", { player, teams });
+};
+
 const update = async (req, res) => {
   let data = {
-    name: req.body.name,
-    last_name: req.body.last_name,
+    name: req.body.name == "" ? null : req.body.name,
+    last_name: req.body.last_name == "" ? null : req.body.last_name,
     age: req.body.age,
-    idteam: req.body.idteam,
+    idteam: req.body.idteam == 0 ? null : req.body.idteam,
   };
 
   let idplayer = req.params.id;
   let result = await playerControler.update(data, idplayer);
 
   if (result[0] === 0) {
-    res.send(result[1]);
+    res.redirect("/players");
   } else {
     let error = result[1];
-    res.status(500).send({
-      message: error.message || "Some error ocurred while retrieving players.",
-    });
+    let errorUri = encodeURIComponent(error.message);
+    res.redirect(`/players?error=${errorUri}`);
   }
 };
 
@@ -95,6 +104,7 @@ export default {
   getById,
   createForm,
   create,
+  updateForm,
   update,
   deletes,
 };

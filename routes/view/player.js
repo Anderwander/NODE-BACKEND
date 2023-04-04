@@ -26,18 +26,22 @@ router.post("/", isAuthorized, (req, res) => {
   /* res.send("Crea un jugador "); */
 });
 
-router.put("/player/:id", isAuthorized, (req, res) => {
+router.get("/edit/:id", isAdmin, (req, res) => {
+  playerControler.updateForm(req, res);
+});
+
+router.post("/edit/:id", isAuthorized, (req, res) => {
   playerControler.update(req, res);
   /*   res.send("Edita un jugador con id " + req.params.id);*/
 });
 
-router.post("/player/delete/:id", isAuthorized, (req, res) => {
+router.post("/delete/:id", isAuthorized, (req, res) => {
   playerControler.deletes(req, res);
   /* res.send("Elimina un jugador con id " + req.params.id); */
 });
 
 /*
-crear nuevo jugador
+crear nuevo jugador 
 editar un jugador
 eliminar un jugador
 */
